@@ -10,5 +10,5 @@ html {
 }
 
 .coustom-btn {
-  @apply px-8 py-2 border font-semibold border-[#f4d699] transition-all duration-500 rounded-full hover:text-black hover:bg-[#f4d699];
+  @apply px-8 py-2 border text-[#f4d699] font-semibold border-[#f4d699] transition-all duration-500 rounded-full hover:text-black hover:bg-[#f4d699];
 }

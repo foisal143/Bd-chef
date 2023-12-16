@@ -1,12 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../layouts/Main/Main';
 import Home from '../pages/Home/Home/Home';
+import LoginLayout from '../layouts/LoginLayout/LoginLayout';
+import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
+import Recepies from '../layouts/Recepies/Recepies';
+import ViewRecepie from '../pages/ViewRecepie/ViewRecepie';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Main></Main>,
-    errorElement: <p>this is error page</p>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -19,6 +25,32 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: <p>this is blog page</p>,
+      },
+    ],
+  },
+  {
+    path: 'login',
+    element: <LoginLayout></LoginLayout>,
+    children: [
+      {
+        path: '/login',
+        element: <Login></Login>,
+      },
+      {
+        path: 'register',
+        element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: 'recepie',
+    element: <Recepies></Recepies>,
+    children: [
+      {
+        path: '/recepie/:id',
+        element: <ViewRecepie></ViewRecepie>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/chefs/${params.id}`),
       },
     ],
   },

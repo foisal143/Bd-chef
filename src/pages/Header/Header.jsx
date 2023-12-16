@@ -40,7 +40,9 @@ const Header = () => {
         {user ? (
           <button className="coustom-btn">Logout</button>
         ) : (
-          <button className="coustom-btn">login</button>
+          <Link to="/login">
+            <button className="coustom-btn">login</button>
+          </Link>
         )}
       </div>
     </nav>

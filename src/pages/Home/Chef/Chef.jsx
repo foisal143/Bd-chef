@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Chef = ({ chef }) => {
   const { id, recipes, picture_url, name, likes, experience_years } = chef;
@@ -14,7 +15,9 @@ const Chef = ({ chef }) => {
           <span>Recipes: {recipes.length}</span> <span>Like: {likes}</span>
         </p>
         <div className="card-actions justify-center">
-          <button className="coustom-btn w-full mt-5">View Recepies</button>
+          <Link to={`/recepie/${id}`}>
+            <button className="coustom-btn w-full mt-5">View Recepies</button>
+          </Link>
         </div>
       </div>
     </div>
