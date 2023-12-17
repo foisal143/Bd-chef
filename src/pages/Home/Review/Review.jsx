@@ -44,7 +44,7 @@ const Review = () => {
       .then(res => res.json())
       .then(data => setReview(data));
   }, []);
-  console.log(review);
+
   return (
     <div>
       <h3 className="text-5xl text-center  font-semibold">

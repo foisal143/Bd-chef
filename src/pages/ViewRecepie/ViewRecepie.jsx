@@ -1,6 +1,7 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Recipes from '../Recipes/Recipes';
+import { MdFavorite } from 'react-icons/md';
 
 const ViewRecepie = () => {
   const chef = useLoaderData();
@@ -26,7 +27,13 @@ const ViewRecepie = () => {
         />
       </div>
       <h3 className="text-center mt-10 text-3xl font-bold">Recipes</h3>
-
+      <div className="text-end px-5 lg:px-12 my-5 ">
+        <Link to="/favorite">
+          <button className=" coustom-btn flex items-center gap-1">
+            Favorite Recipes <MdFavorite></MdFavorite>
+          </button>
+        </Link>
+      </div>
       <div className="grid grid-cols-1   my-12 lg:grid-cols-3 gap-5 px-5 lg:px-12">
         {recipes &&
           recipes.map(recipe => (

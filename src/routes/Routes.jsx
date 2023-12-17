@@ -8,6 +8,8 @@ import Recepies from '../layouts/Recepies/Recepies';
 import ViewRecepie from '../pages/ViewRecepie/ViewRecepie';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import Favorite from '../pages/Favorite/Favorite';
+import loaderFav from '../utilitis/loderData';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,11 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: <p>this is blog page</p>,
+      },
+      {
+        path: 'favorite',
+        element: <Favorite></Favorite>,
+        loader: loaderFav,
       },
     ],
   },

@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { MdFavorite } from 'react-icons/md';
-import Rating from 'react-rating';
-import { toast } from 'react-toastify';
-import { FaRegStar, FaStar, FaStarHalf } from 'react-icons/fa';
+import React from 'react';
 import { BiSolidLike } from 'react-icons/bi';
-import 'react-toastify/dist/ReactToastify.css';
-import { addToDb } from '../../utilitis/fakDb';
-const Recipes = ({ recipe }) => {
-  const [favorite, setFavorite] = useState(false);
+import { FaRegStar, FaStar, FaStarHalf } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa6';
+import Rating from 'react-rating';
+
+const SingleFavorite = ({ fav, handlerRemoveItem }) => {
   const {
     recipe_id,
     ingredients,
@@ -15,15 +12,9 @@ const Recipes = ({ recipe }) => {
     instructions,
     rating,
     likeCount,
-  } = recipe;
-
-  const handlerSetFav = id => {
-    setFavorite(true);
-    toast(favorite ? 'Remove To Favorite' : 'Added To Favorite');
-    addToDb(id);
-  };
+  } = fav;
   return (
-    <div className="flex justify-center">
+    <div className="flex  justify-center">
       <div className="border relative border-[#f4d699] p-5 pb-10">
         <h4 className="text-2xl font-semibold ">{recipe_name}</h4>
         <ul className="list-disc my-3 ms-5">
@@ -33,7 +24,7 @@ const Recipes = ({ recipe }) => {
           <span className="font-semibold text-xl">Instructions:</span>{' '}
           {instructions}
         </p>
-        <p className="mt-5 flex justify-between items-center">
+        <p className="mt-5 pb-5 flex justify-between items-center">
           <Rating
             className="text-yellow-500"
             placeholderRating={rating}
@@ -46,15 +37,15 @@ const Recipes = ({ recipe }) => {
           </span>
         </p>
         <button
-          disabled={favorite && true}
-          onClick={() => handlerSetFav(recipe_id)}
-          className={`absolute  bottom-2 ${favorite ? 'text-red-500' : ''}`}
+          onClick={() => handlerRemoveItem(recipe_id)}
+          className="coustom-btn w-10/12 mx-auto items-center absolute bottom-3 justify-center flex gap-1"
         >
-          <MdFavorite className="text-2xl "></MdFavorite>
+          Delete
+          <FaTrash></FaTrash>
         </button>
       </div>
     </div>
   );
 };
 
-export default Recipes;
+export default SingleFavorite;
