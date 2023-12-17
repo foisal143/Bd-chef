@@ -30,7 +30,7 @@ const Home = () => {
             />
             <div className="w-2/3 h-full absolute top-0 bg-gradient-to-r from-black via-black to-transparent opacity-90"></div>
 
-            <div className="absolute top-32 left-5 w-1/2">
+            <div className="absolute top-32 left-5 lg:w-1/2">
               <h2 className=" my-5 lg:text-6xl font-bold">
                 Delicious Food Is My Passion
               </h2>
@@ -51,7 +51,7 @@ const Home = () => {
             />
             <div className="w-2/3 h-full absolute top-0 bg-gradient-to-r from-black via-black to-transparent opacity-90"></div>
 
-            <div className="absolute top-32 left-5 w-1/2">
+            <div className="absolute top-32 left-5 lg:w-1/2">
               <h2 className=" my-5 lg:text-6xl font-bold">
                 Delicious Food Is My Passion
               </h2>
@@ -72,7 +72,7 @@ const Home = () => {
             />
             <div className="w-2/3 h-full absolute top-0 bg-gradient-to-r from-black via-black to-transparent opacity-90"></div>
 
-            <div className="absolute top-32 left-5 w-1/2">
+            <div className="absolute top-32 left-5 lg:w-1/2">
               <h2 className=" my-5 lg:text-6xl font-bold">
                 Delicious Food Is My Passion
               </h2>
@@ -93,7 +93,7 @@ const Home = () => {
             />
             <div className="w-2/3 h-full absolute top-0 bg-gradient-to-r from-black via-black to-transparent opacity-90"></div>
 
-            <div className="absolute top-32 left-5 w-1/2">
+            <div className="absolute top-32 left-5 lg:w-1/2">
               <h2 className=" my-5 lg:text-6xl font-bold">
                 Delicious Food Is My Passion
               </h2>

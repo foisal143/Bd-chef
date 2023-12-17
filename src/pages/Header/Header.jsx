@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { UserContext } from '../../provaider/AuthProvaider/AuthProvaider';
 
 const Header = () => {
-  const user = null;
+  const { user, logout } = useContext(UserContext);
+
+  const handlerLogout = () => {
+    logout()
+      .then(() => {})
+      .catch(er => console.log(er.message));
+  };
   return (
     <nav className="flex lg:px-12 px-2 justify-between items-center h-20">
       <div>
@@ -38,7 +45,19 @@ const Header = () => {
       </div>
       <div>
         {user ? (
-          <button className="coustom-btn">Logout</button>
+          <div className="flex gap-3">
+            <div className="w-11 h-11 flex justify-center items-center rounded-full bg-[#f4d699]">
+              <img
+                title={user && user.displayName}
+                className="w-10 h-10 rounded-full"
+                src={user && user.photoURL}
+                alt=""
+              />
+            </div>
+            <button onClick={handlerLogout} className="coustom-btn">
+              Logout
+            </button>
+          </div>
         ) : (
           <Link to="/login">
             <button className="coustom-btn">login</button>

@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../provaider/AuthProvaider/AuthProvaider';
 const Login = () => {
+  const { googleLogin, githubLogin, loginUser } = useContext(UserContext);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const location = useLocation();
+  const from = location?.state?.pathname;
+  const navigate = useNavigate();
+
+  const handlerGoogleLogin = () => {
+    googleLogin()
+      .then(result => {
+        const loggedUser = result.user;
+
+        setSuccess('Login Success');
+        navigate(from, { replace: true });
+      })
+      .catch(er => setError(er.message));
+  };
+
+  const handlerGithubLogin = () => {
+    githubLogin()
+      .then(res => {
+        const loggedUser = res.user;
+        setSuccess('Login Success');
+        navigate(from, { replace: true });
+      })
+      .catch(er => setError(er.message));
+  };
+
+  const handlerFormSubmit = e => {
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email, password)
+      .then(res => {
+        const loggedUser = res.user;
+        setSuccess('Login Success');
+        navigate(from, { replace: true });
+      })
+      .catch(er => setError(er.message));
+  };
+
   return (
     <div className="hero min-h-[calc(100vh-80px)]">
       <div className="hero-content flex-col border-[#f4d699] border lg:w-1/3 rounded-md ">
@@ -11,7 +53,7 @@ const Login = () => {
           className="card shrink-0 w-full max-w-sm  shadow-2xl 
         "
         >
-          <form className="card-body">
+          <form onClick={handlerFormSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white">Email</span>
@@ -19,6 +61,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="email"
+                name="email"
                 className="input border-[#f4d699] focus:outline-[#f4d699] bg-transparent outline-[#f4d699] input-bordered"
                 required
               />
@@ -30,6 +73,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="password"
+                name="password"
                 className="input bg-transparent focus:outline-[#f4d699] border-[#f4d699] input-bordered"
                 required
               />
@@ -41,6 +85,8 @@ const Login = () => {
                   Forgot password?
                 </a>
               </label>
+              <span className="text-xs text-red-300">{error}</span>
+              <span className="text-xs text-green-500 ">{success}</span>
             </div>
             <div className="form-control mt-6">
               <button className="coustom-btn">Login</button>
@@ -62,10 +108,16 @@ const Login = () => {
           <div className="w-1/2 h-[1px] bg-[#f4d699]"></div>
         </div>
         <div className="flex w-full px-8 gap-5 flex-col">
-          <button className="btn rounded-full flex gap-3 btn-outline btn-accent">
+          <button
+            onClick={handlerGoogleLogin}
+            className="btn rounded-full flex gap-3 btn-outline btn-accent"
+          >
             <FaGoogle /> Continue With Google
           </button>
-          <button className="btn rounded-full flex gap-3 btn-outline btn-primary">
+          <button
+            onClick={handlerGithubLogin}
+            className="btn rounded-full flex gap-3 btn-outline btn-primary"
+          >
             <FaGithub></FaGithub> Continue With Github
           </button>
         </div>

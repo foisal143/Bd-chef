@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
+import Rating from 'react-rating';
 import { toast } from 'react-toastify';
+import { FaRegStar, FaStar, FaStarHalf } from 'react-icons/fa';
+import { BiSolidLike } from 'react-icons/bi';
 import 'react-toastify/dist/ReactToastify.css';
 const Recipes = ({ recipe }) => {
   const [favorite, setFavorite] = useState(false);
-  const { ingredients, recipe_name, instructions } = recipe;
+  const { ingredients, recipe_name, instructions, rating, likeCount } = recipe;
 
   const handlerSetFav = () => {
-    setFavorite(!favorite);
+    setFavorite(true);
     toast(favorite ? 'Remove To Favorite' : 'Added To Favorite');
   };
   return (
@@ -21,14 +24,25 @@ const Recipes = ({ recipe }) => {
           <span className="font-semibold text-xl">Instructions:</span>{' '}
           {instructions}
         </p>
-        <span
+        <p className="mt-5 flex justify-between items-center">
+          <Rating
+            className="text-yellow-500"
+            placeholderRating={rating}
+            emptySymbol={<FaStarHalf />}
+            placeholderSymbol={<FaStar />}
+            fullSymbol={<FaRegStar />}
+          ></Rating>
+          <span className="flex items-center gap-1">
+            <BiSolidLike></BiSolidLike> {likeCount}
+          </span>
+        </p>
+        <button
+          disabled={favorite && true}
           onClick={handlerSetFav}
-          className={`absolute cursor-pointer bottom-2 ${
-            favorite ? 'text-red-500' : ''
-          }`}
+          className={`absolute  bottom-2 ${favorite ? 'text-red-500' : ''}`}
         >
           <MdFavorite className="text-2xl "></MdFavorite>
-        </span>
+        </button>
       </div>
     </div>
   );

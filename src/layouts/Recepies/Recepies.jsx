@@ -7,7 +7,7 @@ const Recepies = () => {
   return (
     <>
       <Header></Header>
-      <div className="min-h-[calc(100vh-290px)]">
+      <div className="min-h-[calc(100vh-100px)]">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

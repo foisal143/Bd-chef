@@ -7,6 +7,7 @@ import Register from '../pages/Register/Register';
 import Recepies from '../layouts/Recepies/Recepies';
 import ViewRecepie from '../pages/ViewRecepie/ViewRecepie';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/recepie/:id',
-        element: <ViewRecepie></ViewRecepie>,
+        element: (
+          <PrivateRoute>
+            <ViewRecepie></ViewRecepie>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/chefs/${params.id}`),
       },

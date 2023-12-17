@@ -5,12 +5,12 @@ const SublimeSection = () => {
     <div className=" px-5 lg:px-12 flex flex-col lg:flex-row min-h-[70vh] lg:min-h-[35vh] justify-between gap-5 mt-20  ">
       <div className="flex h-full   relative lg:w-1/2 justify-center items-center flex-col">
         <img
-          className=" absolute right-20 top-0"
+          className=" absolute right-0 lg:right-20 top-0"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0PWUpMlEaC9SYA1VuUwOzbF0bCi2wpRnpLg&usqp=CAU"
           alt=""
         />
         <img
-          className=" absolute top-20 right-40"
+          className=" absolute top-20 right-20 lg:right-40"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTezaBgNX7uwzXLjnDazNFfyPm7xv1zcPQDEA&usqp=CAU"
           alt=""
         />
