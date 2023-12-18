@@ -10,6 +10,9 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Favorite from '../pages/Favorite/Favorite';
 import loaderFav from '../utilitis/loderData';
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import About from '../pages/About/About';
+import Blog from '../pages/Blog/Blog';
 
 const router = createBrowserRouter([
   {
@@ -23,22 +26,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'about',
-        element: <p>this is about section</p>,
+        element: <About></About>,
       },
       {
         path: 'blog',
-        element: <p>this is blog page</p>,
+        element: <Blog></Blog>,
       },
       {
         path: 'favorite',
         element: <Favorite></Favorite>,
         loader: loaderFav,
       },
+      {
+        path: 'profile',
+        element: <ProfilePage></ProfilePage>,
+      },
     ],
   },
   {
     path: 'login',
     element: <LoginLayout></LoginLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/login',
@@ -53,6 +61,7 @@ const router = createBrowserRouter([
   {
     path: 'recepie',
     element: <Recepies></Recepies>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/recepie/:id',
@@ -62,7 +71,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/chefs/${params.id}`),
+          fetch(`https://bd-chef-server-ashy.vercel.app/chefs/${params.id}`),
       },
     ],
   },

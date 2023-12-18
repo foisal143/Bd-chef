@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../provaider/AuthProvaider/AuthProvaider';
 import { updateProfile } from 'firebase/auth';
@@ -8,6 +8,7 @@ const Register = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const { createUesr, googleLogin, githubLogin } = useContext(UserContext);
+  const [showPass, setShowPass] = useState(false);
 
   const handlerGoogleLogin = () => {
     setSuccess('');
@@ -16,7 +17,7 @@ const Register = () => {
         console.log(res.user);
         setSuccess('Registation success');
       })
-      .catch(er => setError(er.message));
+      .catch(er => console.log(er.message));
   };
 
   const handlerGithubLogin = () => {
@@ -26,7 +27,7 @@ const Register = () => {
         console.log(res.user);
         setSuccess('Registation success');
       })
-      .catch(er => setError(er.message));
+      .catch(er => console.log(er.message));
   };
 
   const handlerFormSubmit = e => {
@@ -112,17 +113,27 @@ const Register = () => {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="label-text text-white">Password</span>
               </label>
               <input
-                type="password"
+                type={showPass ? 'text' : 'password'}
                 placeholder="password"
                 name="password"
                 className="input bg-transparent focus:outline-[#f4d699] border-[#f4d699] input-bordered"
                 required
               />
+              <span
+                className="absolute cursor-pointer top-[52px] right-2"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? (
+                  <FaRegEye></FaRegEye>
+                ) : (
+                  <FaRegEyeSlash></FaRegEyeSlash>
+                )}
+              </span>
               <span className="text-xs text-red-300">{error}</span>
               <span className="text-xs text-green-500 ">{success}</span>
             </div>

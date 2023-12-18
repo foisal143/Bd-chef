@@ -2,7 +2,7 @@ import { getDataFromDb } from './fakDb';
 
 const loaderFav = async () => {
   const data = await getDataFromDb();
-  const chefData = await fetch('http://localhost:5000/chefs');
+  const chefData = await fetch('https://bd-chef-server-ashy.vercel.app/chefs');
   const chefs = await chefData.json();
 
   const favoriteRecipe = [];

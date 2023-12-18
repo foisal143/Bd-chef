@@ -40,7 +40,7 @@ const Review = () => {
   };
   const [review, setReview] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/review')
+    fetch('https://bd-chef-server-ashy.vercel.app/review')
       .then(res => res.json())
       .then(data => setReview(data));
   }, []);

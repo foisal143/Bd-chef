@@ -15,8 +15,10 @@ const SublimeSection = () => {
           alt=""
         />
       </div>
-      <div className=" lg:static relative top-20  lg:w-1/2">
-        <h3 className="text-5xl font-bold ">Experience The Sublime!</h3>
+      <div className=" lg:static  relative top-36 sm:top-20  lg:w-1/2">
+        <h3 className=" text-3xl md:text-5xl font-bold ">
+          Experience The Sublime!
+        </h3>
         <p className="my-5">
           Chef Alanzo prepares and serves exquisite dinners to parties from two
           to 200 at your home, business or private catering event. His blend of

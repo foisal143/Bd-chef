@@ -3,7 +3,7 @@ export const ChefContext = createContext(null);
 const ChefProvaider = ({ children }) => {
   const [chefs, setChefs] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/chefs')
+    fetch('https://bd-chef-server-ashy.vercel.app/chefs')
       .then(res => res.json())
       .then(data => setChefs(data.chefs))
       .catch(er => console.log(er.message));

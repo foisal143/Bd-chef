@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../provaider/AuthProvaider/AuthProvaider';
 const Login = () => {
   const { googleLogin, githubLogin, loginUser } = useContext(UserContext);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showPass, setShowPass] = useState(false);
   const location = useLocation();
   const from = location?.state?.pathname;
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Login = () => {
         setSuccess('Login Success');
         navigate(from, { replace: true });
       })
-      .catch(er => setError(er.message));
+      .catch(er => console.log(er.message));
   };
 
   const handlerGithubLogin = () => {
@@ -28,13 +29,14 @@ const Login = () => {
         setSuccess('Login Success');
         navigate(from, { replace: true });
       })
-      .catch(er => setError(er.message));
+      .catch(er => console.log(er.message));
   };
 
   const handlerFormSubmit = e => {
+    e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const email = form?.email?.value;
+    const password = form?.password?.value;
     loginUser(email, password)
       .then(res => {
         const loggedUser = res.user;
@@ -53,7 +55,7 @@ const Login = () => {
           className="card shrink-0 w-full max-w-sm  shadow-2xl 
         "
         >
-          <form onClick={handlerFormSubmit} className="card-body">
+          <form onSubmit={handlerFormSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white">Email</span>
@@ -66,17 +68,19 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="label-text text-white">Password</span>
               </label>
+
               <input
-                type="password"
+                type={showPass ? 'text' : 'password'}
                 placeholder="password"
                 name="password"
                 className="input bg-transparent focus:outline-[#f4d699] border-[#f4d699] input-bordered"
                 required
               />
+
               <label className="label">
                 <a
                   href="#"
@@ -85,11 +89,23 @@ const Login = () => {
                   Forgot password?
                 </a>
               </label>
+              <span
+                className="absolute cursor-pointer top-[52px] right-2"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? (
+                  <FaRegEye></FaRegEye>
+                ) : (
+                  <FaRegEyeSlash></FaRegEyeSlash>
+                )}
+              </span>
               <span className="text-xs text-red-300">{error}</span>
               <span className="text-xs text-green-500 ">{success}</span>
             </div>
             <div className="form-control mt-6">
-              <button className="coustom-btn">Login</button>
+              <button type="button" className="coustom-btn">
+                Login
+              </button>
             </div>
           </form>
           <div className="text-center">

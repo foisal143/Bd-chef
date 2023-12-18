@@ -2,13 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-body,
-html {
+body {
   background-color: black;
   color: white;
   min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .coustom-btn {
   @apply px-8 py-2 border text-[#f4d699] font-semibold border-[#f4d699] transition-all duration-500 rounded-full hover:text-black hover:bg-[#f4d699];
+}
+.coustom-btn2 {
+  @apply px-8 py-2 border  text-black font-semibold bg-[#f4d699] transition-all duration-500 rounded-full hover:text-[#f4d699] hover:bg-black;
 }
