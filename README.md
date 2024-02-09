@@ -1,11 +1,9 @@
-# React + Vite
+# Bd Chef
 
-This template provides a minimal setup to get React working in Vite with HMR and
-some ESLint rules.
+This website created by react js , tailwind css, daisyUi, it's a chef website in
+this website chefs shared there recipe. User can make those deash by read the
+recipe.
 
-Currently, two official plugins are available:
+## Live Link
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
-  uses [SWC](https://swc.rs/) for Fast Refresh
+link: https://bd-chef-95d00.web.app/

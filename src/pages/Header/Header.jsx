@@ -7,6 +7,9 @@ const Header = () => {
   const { user, logout } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
+  const handlerTheme = e => {
+    console.log(e.target.checked);
+  };
   return (
     <nav className="flex lg:px-12 px-2    justify-between items-center h-20">
       <div>
@@ -73,6 +76,7 @@ const Header = () => {
           Login
         </NavLink>
       </div>
+
       <div className="lg:hidden ">
         <button className="text-xl" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FaXmark></FaXmark> : <FaBars></FaBars>}
